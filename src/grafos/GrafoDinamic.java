@@ -106,9 +106,16 @@ public class GrafoDinamic implements GrafosTDA {
 		return false;
 	}
 
-	public int pesoArista(int v1, int v2) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int pesoArista(int v1, int v2) throws Exception {
+		if(!this.existeArista(v1, v2)) {
+			throw new Exception("NoExisteAristaException");
+		}
+		NodoGrafo aux = this.encontrarNodo(v1);
+		NodoArista arista = aux.lista;
+		while (arista.apunta.valor != v2) {
+			arista = arista.sig;
+		}
+		return arista.peso;
 	}
 
 	public void mostrarMatriz() {

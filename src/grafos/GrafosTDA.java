@@ -17,7 +17,7 @@ public interface GrafosTDA {
 	
 	public boolean existeArista(int v1, int v2);
 	
-	public int pesoArista(int v1, int v2);
+	public int pesoArista(int v1, int v2) throws Exception;
 	
 	public void mostrarMatriz();
 	
