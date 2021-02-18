@@ -14,7 +14,7 @@ import grafos.NodoGrafo;
 public class Dijkstra {
 	/**
 	 * Es el ejemplo de la diapositiva 11 de la ppt 10
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static void Test() throws Exception {
 		Dijkstra dijkstra = new Dijkstra();
@@ -36,12 +36,18 @@ public class Dijkstra {
 		grafo1.agregarArista(6, 2, 20);
 		grafo1.agregarArista(6, 5, 10);
 		NodoGrafo inicio1 = grafo1.encontrarNodo(1);
+
+		System.out.println("Se va a usar el nodo de inicio: ");
+		System.out.println(inicio1);
+		System.out.println("Y el grafo: ");
+		grafo1.mostrarMatriz();
 		
 		Map<NodoGrafo, Integer> D1 = dijkstra.recorrer(grafo1, inicio1);
-		
+
+		System.out.println("Distancias minimas obtenidas para cada vertice: ");
 		System.out.println(D1.toString());
 	}
-	
+
 	public Map<NodoGrafo, Integer> recorrer(GrafoDinamic grafo, NodoGrafo inicio) throws Exception {
 		// Distancias
 		Map<NodoGrafo, Integer> D = new HashMap<>();
@@ -49,17 +55,17 @@ public class Dijkstra {
 		Queue<NodoGrafo> Q = new LinkedList<NodoGrafo>();
 		// Conjunto de nodos visitados
 		Set<NodoGrafo> S = new HashSet<NodoGrafo>();
-		
+
 		// Inicializamos las distancias de todos los nodos respectivo del inicio a infinito
 		for (int valorNodo : grafo.vertices()) {
 			NodoGrafo nodo = grafo.encontrarNodo(valorNodo);
-			D.put(nodo, Integer.MAX_VALUE);
+			D.put(nodo, Integer.MAX_VALUE); // infinito
 			Q.add(nodo); // Q = V
 		}
 		// El inicio queda con distancia 0.
 		D.put(inicio, 0);
-		
-		// Recorremos Q mientras no sea vacío.		
+
+		// Recorremos Q mientras no sea vacï¿½o.
 		while(!Q.isEmpty()) {
 			NodoGrafo u = this.distanciaMinima(D, Q);
 			Q.remove(u);
@@ -68,7 +74,7 @@ public class Dijkstra {
 			for (NodoGrafo v : grafo.Adyacentes(u.valor)) {
 				// Si la distancia hasta el vecino es mayor que la distancia
 				// del nodo actual + (la arista nodoActual->vecino), significa que encontramos un camino
-				// más corto!
+				// mï¿½s corto!
 				if(D.get(v) > D.get(u) + grafo.pesoArista(u.valor, v.valor)) {
 					D.put(v, D.get(u) + grafo.pesoArista(u.valor, v.valor));
 				}
@@ -76,11 +82,11 @@ public class Dijkstra {
 		}
 		return D;
 	}
-	
+
 	/**
-	 * Primero filtra D, y se queda con solo aquellos que también están en Q.
-	 * Luego, busca el que tiene la distancia mínima.
-	 * Devuelve el NodoGrafo con distancia mínima.
+	 * Primero filtra D, y se queda con solo aquellos que tambiï¿½n estï¿½n en Q.
+	 * Luego, busca el que tiene la distancia mï¿½nima.
+	 * Devuelve el NodoGrafo con distancia mï¿½nima.
 	 * @param D
 	 * @return El NodoGrafo con menor distancia
 	 */

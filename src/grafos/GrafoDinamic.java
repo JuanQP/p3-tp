@@ -126,9 +126,10 @@ public class GrafoDinamic implements GrafosTDA {
 			arista = aux.lista;
 			while (arista != null) {
 
-				System.out.print(arista.peso + " " + arista.apunta.valor + "\t");
+				System.out.print("(V:" + arista.apunta.valor + " | P:" + arista.peso + ") -> ");
 				arista = arista.sig;
 			}
+			System.out.print("null");
 			System.out.println();
 			aux = aux.sig;
 		}
